@@ -1,0 +1,418 @@
+{
+  "name": "Atualiza tabela TRANSITO_ATUALIZAVEL",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "afe64a55-6727-4712-a9e5-57214f03520c",
+              "name": "filial_destino",
+              "value": "={{ $json.filial_destino }}",
+              "type": "string"
+            },
+            {
+              "id": "7bb0bc10-0969-4690-a9df-29d0861a49c8",
+              "name": "filial_origem",
+              "value": "={{ $json.filial_origem }}",
+              "type": "string"
+            },
+            {
+              "id": "fdad7e37-0fc9-4232-952c-1abfa8322b9c",
+              "name": "NF",
+              "value": "={{ $json.NF }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2128,
+        624
+      ],
+      "id": "bbfb79f8-2f03-4019-818b-04b32ddc9997",
+      "name": "Edit Fields3"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        1680,
+        608
+      ],
+      "id": "d3384cdf-d6e2-4060-8a4f-72670496d8c3",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1904,
+        608
+      ],
+      "id": "4fc1e03d-60a2-4deb-ab47-e66f963fe836",
+      "name": "Loop Over Items1",
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        1184,
+        768
+      ],
+      "id": "80cc2d89-b9bf-4b3e-862a-a8721d751cba",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.Filial }}",
+                    "rightValue": "IB",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "d63f79c7-a421-49e2-899b-51aface5a63f"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "IB"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "61626995-e58d-4394-b1ad-1b217ed1aa04",
+                    "leftValue": "={{ $json.Filial }}",
+                    "rightValue": "TH",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "TH"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        1392,
+        768
+      ],
+      "id": "0cd3a0f1-750a-4984-846b-6953bf3a7712",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "afe64a55-6727-4712-a9e5-57214f03520c",
+              "name": "filial_destino",
+              "value": "={{ $json.filial_destino }}",
+              "type": "string"
+            },
+            {
+              "id": "7bb0bc10-0969-4690-a9df-29d0861a49c8",
+              "name": "filial_origem",
+              "value": "={{ $json.filial_origem }}",
+              "type": "string"
+            },
+            {
+              "id": "fdad7e37-0fc9-4232-952c-1abfa8322b9c",
+              "name": "NF",
+              "value": "={{ $json.NF }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2128,
+        928
+      ],
+      "id": "9472e8f0-c060-4f06-a2c1-3d747bc95514",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        1680,
+        912
+      ],
+      "id": "fb74998a-45b5-469c-a359-f16d27ef3902",
+      "name": "Split Out1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1904,
+        912
+      ],
+      "id": "65c69411-4a03-4613-a60b-364a184f8824",
+      "name": "Loop Over Items",
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "insert into TRANSITO_ATUALIZAVEL\n(filial_destino, filial_origem, numero_nf, email_enviado, data_envio)\nvalues\n('{{ $json.filial_destino }}', '{{ $json.filial_origem }}', '{{ $json.NF }}', 1, getdate())"
+      },
+      "type": "n8n-nodes-base.microsoftSql",
+      "typeVersion": 1.1,
+      "position": [
+        2368,
+        624
+      ],
+      "id": "32798f08-d60d-4a1d-9779-65ca62280ef5",
+      "name": "Inclui status do transito IB",
+      "credentials": {
+        "microsoftSql": {
+          "id": "8rguz0R8o0fp0CrE",
+          "name": "SQL IB"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "insert into TRANSITO_ATUALIZAVEL\n(filial_destino, filial_origem, numero_nf, email_enviado, data_envio)\nvalues\n('{{ $json.filial_destino }}', '{{ $json.filial_origem }}', '{{ $json.NF }}', 1, getdate())"
+      },
+      "type": "n8n-nodes-base.microsoftSql",
+      "typeVersion": 1.1,
+      "position": [
+        2368,
+        928
+      ],
+      "id": "e098926e-de46-48f1-a7c4-534238ee45b7",
+      "name": "Inclui status do transito TH",
+      "credentials": {
+        "microsoftSql": {
+          "id": "OkN54iV2AMtgjIYk",
+          "name": "SQL TH"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Query que vai incluir o status das notas no banco\n",
+        "height": 576
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2288,
+        512
+      ],
+      "id": "345f8386-468f-4a1a-8f8d-8418748dc245",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Recebe os dados do workflow principal para armazenar na tabela.",
+        "height": 320,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        592
+      ],
+      "id": "ef296617-226d-4b21-87b3-c39811ce3f34",
+      "name": "Sticky Note1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "Inclui status do transito IB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Split Out1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Inclui status do transito TH",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Inclui status do transito IB": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Inclui status do transito TH": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "4c8dd5e5-fa86-4dd7-bd4b-7d5463fe9d1e",
+  "meta": {
+    "instanceId": "c9ac0336281178410ae1caf9c0c4bc6510509f0f05a469f30c634bd9ecc77f35"
+  },
+  "id": "TA6W9QdfYtSJ4y6b",
+  "tags": [
+    {
+      "updatedAt": "2026-02-10T01:44:54.968Z",
+      "createdAt": "2026-02-10T01:44:54.968Z",
+      "id": "YJGxff8FfyZk764o",
+      "name": "Transito de notas"
+    }
+  ]
+}
